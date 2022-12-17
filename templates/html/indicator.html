@@ -1,0 +1,270 @@
+{{.Header}}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Indicator</h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <form id="batch-creation" data-parsley-validate class="form-horizontal form-label-right" method="post">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title  hidden-print">
+                            <h2>GEO code selection</h2>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content ">
+                            <br />
+                            <form id="bar-code-generation" data-parsley-validate
+                                class="form-horizontal form-label-left">
+                                <div class="form-group hidden-print">
+                                    <div class="btn btn-outline-primary float-right badge bg-secondary">Please scroll down to see the output</div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">National</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        
+                                        <input type="text" name="National" id="autocomplete-National"
+                                            class="form-control" autocomplete="off" value="Bangladesh"
+                                            readonly="true" />
+                                    </div>
+                                </div>
+                                <div class="form-group remove-empty-values hidden-print">
+                                    <div class="col-md3 col-sm-3 col-xs-3"></div>
+                                    <div class="col-md6 col-sm-6 col-xs-12">
+                                        <h4>(Press space to get a list of all values)</h4>
+                                    </div>
+                                </div>
+                                <div class="form-group remove-empty-values hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Division
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="DivisionNumber" id="autocomplete-division"
+                                            class="form-control" value="{{.DivisionNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">District
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="DistrictNumber" id="autocomplete-district"
+                                            class="form-control" value="{{.DistrictNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Upazila
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="UpazilaNumber" id="autocomplete-upazilla"
+                                            class="form-control" value="{{.UpazilaNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Union
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="UnionNumber" id="autocomplete-union"
+                                            class="form-control" value="{{.UnionNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Mauza
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="MouzaNumber" id="autocomplete-mouza"
+                                            class="form-control" value="{{.MouzaNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Table name<span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select class="form-control" name="TableNumber">
+                                            <option value="1">Please Select The Indicator</option>
+                                            <option value="1">1 Total number of holdings</option>
+                                            <option value="2">2 Total number of farm holdings & percentage</option>
+                                            <option value="3">3 Total number of small farm & percentage</option>
+                                            <option value="4">4 Total number of medium farm & percentage</option>
+                                            <option value="5">5 Total number of large farm & percentage</option>
+                                            <option value="6">6 Total number of landless (owning no land) & percentage
+                                            </option>
+                                            <option value="7">7 Total number of agriculture labor household & percentage
+                                            </option>
+                                            <option value="8">8 Total number of fishery household &
+                                                percentage</option>
+                                            <option value="9">9 Agriculture worker per household</option>
+                                            <option value="10">10 Agriculture worker per farm household</option>
+                                            <option value="11">11 Operated area (in acre) per holding</option>
+                                            <option value="12">12 Operated area (in acre) per farm holding</option>
+                                            <option value="13">13 Homestead area (in acre) per holding</option>
+                                            <option value="14">14 Homestead area (in acre) per farm holding</option>
+                                            <option value="15">15 Total number of male headed households & percentage
+                                            </option>
+                                            <option value="16">16 Total Number of female headed households & percentage
+                                            </option>
+                                            <option value="17">17 Total number of holding reporting irrigation &
+                                                percentage</option>
+                                            <option value="18">18 Total number of holding area (in acre) irrigated &
+                                                percentage
+                                            </option>
+                                            <option value="19">19 Total number of farms holding reporting irrigation &
+                                                percentage</option>
+                                            <option value="20">20 Total number of farms holding area (in acre) irrigated
+                                                &
+                                                percentage </option>
+                                            <option value="21">21 Total number of cow</option>
+                                            <option value="22">22 Total number of buffalo</option>
+                                            <option value="23">23 Total number of goat</option>
+                                            <option value="24">24 Total number of sheep </option>
+                                            <option value="25">25 Total number of cock/hen</option>
+                                            <option value="26">26 Total number of duck</option>
+                                            <option value="27">27 Cropping Intensity</option>
+                                            <option value="28">28 Net cultivated area (in acre) </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {{.Alert}}
+
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group hidden-print">
+                                    <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-5">
+                                        <button class="btn btn-primary" type="button"
+                                            onclick="myReset();">Reset</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                   
+                                </div>
+                                <div id="printableArea">
+                                <div class="x_content">
+
+                                    <div id="test">Table name : {{.QueryType}}</div>
+                                    <table id="datatable-buttons" class="table table-striped ">
+                                        <thead>
+                                            <tr>
+                                                <th>Total</th>
+                                                <th>Urban</th>
+                                                <th>Rural</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{.TableData}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-3">
+                                        {{.Donuts}}
+                                    </div>
+                                </div>
+                                <h7>Source: Bangladesh Bureau of Statistics.
+                                    Report produced by Agriculture (Crops, Fisheries and Livestock) Census 2018
+                                    Project.</h7>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- /page content -->
+
+{{.Footer}}
+
+<script>
+    function myReset() {
+        console.log('reset fields');
+        document.getElementById("autocomplete-division").value = "";
+        document.getElementById("autocomplete-district").value = "";
+        document.getElementById("autocomplete-upazilla").value = "";
+        document.getElementById("autocomplete-union").value = "";
+        document.getElementById("autocomplete-mouza").value = "";
+    }
+    $('#test').html(function(i,text){var atext=text.replaceAll('&lt;','<').replaceAll('&gt;','>');
+    return atext;});
+    // function printDiv(divName) {
+    //  window.print();
+//}
+</script>
+
+<script>
+    function init_autocomplete() {
+        console.log('init_autocomplete');
+        $('#autocomplete-mouza').autocomplete({
+            serviceUrl: '/adms/mouza',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+                district: function () {
+                    return $("#autocomplete-district").val();
+                },
+                upazila: function () {
+                    return $("#autocomplete-upazilla").val();
+                },
+                union: function () {
+                    return $("#autocomplete-union").val();
+                },
+            }
+        });
+
+        $('#autocomplete-union').autocomplete({
+            serviceUrl: '/adms/union',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+                district: function () {
+                    return $("#autocomplete-district").val();
+                },
+                upazila: function () {
+                    return $("#autocomplete-upazilla").val();
+                },
+            }
+        });
+
+        $('#autocomplete-upazilla').autocomplete({
+            serviceUrl: '/adms/upazilla',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+                district: function () {
+                    return $("#autocomplete-district").val();
+                },
+            }
+        });
+
+        $('#autocomplete-district').autocomplete({
+            serviceUrl: '/adms/district',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+            }
+        });
+
+        $('#autocomplete-division').autocomplete({
+            serviceUrl: '/adms/division',
+            autoSelectFirst: true
+        });
+    }
+</script>

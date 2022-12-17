@@ -1,0 +1,218 @@
+{{.Header}}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>District series report</h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <form id="booklet-registration" data-parsley-validate class="form-horizontal form-label-right" method="post">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>District selection</h2>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content">
+                            <br />
+                            <form id="bar-code-generation" data-parsley-validate
+                                class="form-horizontal form-label-left">
+                                <div class="form-group remove-empty-values">
+                                    <div class="col-md3 col-sm-3 col-xs-3"></div>
+                                    <div class="col-md6 col-sm-6 col-xs-12">
+                                        <h4>(Press space to get a list of all values)</h4>
+                                    </div>
+                                </div>
+                                <div class="form-group remove-empty-values">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Division
+                                       </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="DivisionNumber" id="autocomplete-division"
+                                            class="form-control" value="{{.DivisionNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">District
+                                        </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="DistrictNumber" id="autocomplete-district"
+                                            class="form-control" value="{{.DistrictNumber}}" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Table name<span
+                                            class="required">*</span>
+                                        </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select class="form-control" name="TableName">
+                                            <option value="">Please select a data table...</option>
+                                            <option value="01">1. Basic characteristics of holdings classified by area
+                                                size</option>
+                                            <option value="02">2. Crop area of farm holdings classified by area size
+                                            </option>
+                                            <option value="03">3. Population in dwelling by gender and locality</option>
+                                            <option value="04">4. Population in dwelling units and population engaged in
+                                                agricultural work by sex and age group</option>
+                                            <option value="05">5. Population engaged in agricultural work classified by
+                                                area size of holdings</option>
+                                            <option value="06">6. Population of agriculture labor households and number
+                                                engaged in agricultural work classified by age group and area size
+                                            </option>
+                                            <option value="07">7. Land ownership of holdings classified by area size and
+                                                type</option>
+                                            <option value="08">8. Land ownership of holdings classified by operated area
+                                            </option>
+                                            <option value="09">9. Operated, homestead, crop area and irrigation
+                                                classified by tenancy and farm size</option>
+                                            <option value="10">10. Tenancy status and practices of holdings classified
+                                                by farm size</option>
+                                            <option value="11">11. Tenancy status of male & female headed holdings
+                                                classified by selected characteristics</option>
+                                            <option value="12">12. Holding reported irrigation, net irrigated and net cultivated 
+                                                area classified by holding type and size</option>
+                                            <option value="13">13. Livestock and poultry population of holdings by type
+                                                and size</option>
+                                            <option value="14">14. Livestock (cattle) of holdings by land ownership status</option>
+                                            <option value="15">15. Livestock (poultry) of holdings by land ownership status</option>
+                                            <option value="16">16. Area under fish cultivation by farm size and locality</option>
+                                            <option value="17">17. Type and size of holdings classified by agriculture equipment 
+                                                ownership and tenancy</option>
+                                            <option value="18">18. Size of holdings owning agriculture equipment by type and status</option>
+                                            <option value="19">19. Status of holdings owning agriculture equipments by type</option>
+                                            <option value="20">20. Number of households and land use by district/upazila/union/mouza</option>
+                                            <option value="21">21. Number of agriculture labour households, livestock, poultry and agriculture  equipments by district/upazila/union/mouza</option>
+                                            <option value="22">22. Area under different temporary crops by district/upazila/union/mauza</option>  
+                                            <option value="23">23. Area under different permanent crops by district/upazila/union/mauza</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {{.AlertQrCode}}
+
+                                <div class="ln_solid"></div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+                                        <button class="btn btn-primary" type="reset">Reset</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+
+                                {{.PDF}}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Dialog -->
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+            </div>
+            <div class="modal-body">
+                <p>You are about to delete <b><i class="title"></i></b> record, this procedure is irreversible.</p>
+                <p>Do you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+
+{{.Footer}}
+
+<script>
+    function myReset() {
+        console.log('reset fields');
+        document.getElementById("autocomplete-division").value = "";
+        document.getElementById("autocomplete-district").value = "";
+        document.getElementById("autocomplete-upazilla").value = "";
+        document.getElementById("autocomplete-union").value = "";
+        document.getElementById("autocomplete-mouza").value = "";
+    }
+</script>
+
+<script>
+    function init_autocomplete() {
+        console.log('init_autocomplete');
+        $('#autocomplete-mouza').autocomplete({
+            serviceUrl: '/adms/mouza',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+                district: function () {
+                    return $("#autocomplete-district").val();
+                },
+                upazila: function () {
+                    return $("#autocomplete-upazilla").val();
+                },
+                union: function () {
+                    return $("#autocomplete-union").val();
+                },
+            }
+        });
+
+        $('#autocomplete-union').autocomplete({
+            serviceUrl: '/adms/union',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+                district: function () {
+                    return $("#autocomplete-district").val();
+                },
+                upazila: function () {
+                    return $("#autocomplete-upazilla").val();
+                },
+            }
+        });
+
+        $('#autocomplete-upazilla').autocomplete({
+            serviceUrl: '/adms/upazilla',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+                district: function () {
+                    return $("#autocomplete-district").val();
+                },
+            }
+        });
+
+        $('#autocomplete-district').autocomplete({
+            serviceUrl: '/adms/district',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+            }
+        });
+
+        $('#autocomplete-division').autocomplete({
+            serviceUrl: '/adms/division',
+            autoSelectFirst: true
+        });
+    }
+</script>

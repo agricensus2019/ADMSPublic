@@ -1,0 +1,10 @@
+# public ressources
+p, /admspublic/*, /vendors/*, GET
+p, /admspublic/*, /build/*, GET
+p, /admspublic/*, /images/*, GET
+p, /admspublic/*, /favicon.ico, GET
+p, /admspublic/*, /, GET
+
+# registered members
+p, /admspublic/member, /production/*, *
+p, /admspublic/member, /adms/*, *

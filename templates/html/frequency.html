@@ -1,0 +1,207 @@
+{{.Header}}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Frequency list</h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <form id="batch-creation" data-parsley-validate class="form-horizontal form-label-right" method="post">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title hidden-print">
+                            <h2>GEO code selection</h2>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content">
+                            <br />
+                            <form id="bar-code-generation" data-parsley-validate
+                                class="form-horizontal form-label-left">
+                                <div  class="hidden-print">
+                                    <div class="clearfix"></div>
+                                <div class="form-group hidden-print">
+                                    <div class="btn btn-outline-primary float-right badge bg-secondary">Please scroll down to see the output</div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">National</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="National" id="autocomplete-National"
+                                            class="form-control" autocomplete="off" value="Bangladesh"
+                                            readonly="true" />
+                                    </div>
+                                </div>
+                                <div class="form-group remove-empty-values hidden-print">
+                                    <div class="col-md3 col-sm-3 col-xs-3"></div>
+                                    <div class="col-md6 col-sm-6 col-xs-12">
+                                        <h4>(Press space to get a list of all values)</h4>
+                                    </div>
+                                </div>
+                                <div class="form-group remove-empty-values hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Division
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="DivisionNumber" id="autocomplete-division"
+                                            class="form-control" value="{{.DivisionNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">District
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="DistrictNumber" id="autocomplete-district"
+                                            class="form-control" value="{{.DistrictNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Upazila
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="UpazilaNumber" id="autocomplete-upazilla"
+                                            class="form-control" value="{{.UpazilaNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Union
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="UnionNumber" id="autocomplete-union"
+                                            class="form-control" value="{{.UnionNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Mauza
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" name="MouzaNumber" id="autocomplete-mouza"
+                                            class="form-control" value="{{.MouzaNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group hidden-print">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Frequency list<span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select class="form-control" name="TableNumber">
+                                            <option value="1">Please Select Frequceny List</option>
+                                            <option value="1">1 Occupation of the household head</option>
+                                            <option value="2">2 Education of the household head</option>
+                                            <option value="3">3 Gender of the household head</option>
+                                            <option value="4">4 Fishery holding</option>
+                                            <option value="5">5 Agricultural labor holding</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                {{.Alert}}
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group hidden-print">
+                                    <div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-5">
+                                        <button class="btn btn-primary" type="button"
+                                            onclick="myReset();">Reset</button>
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                                {{.TableAndDonut}}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- /page content -->
+
+{{.Footer}}
+
+<script>
+    function myReset() {
+        console.log('reset fields');
+        document.getElementById("autocomplete-division").value = "";
+        document.getElementById("autocomplete-district").value = "";
+        document.getElementById("autocomplete-upazilla").value = "";
+        document.getElementById("autocomplete-union").value = "";
+        document.getElementById("autocomplete-mouza").value = "";
+    }
+</script>
+
+<script>
+    function init_autocomplete() {
+        console.log('init_autocomplete');
+        $('#autocomplete-mouza').autocomplete({
+            serviceUrl: '/adms/mouza',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+                district: function () {
+                    return $("#autocomplete-district").val();
+                },
+                upazila: function () {
+                    return $("#autocomplete-upazilla").val();
+                },
+                union: function () {
+                    return $("#autocomplete-union").val();
+                },
+            }
+        });
+
+        $('#autocomplete-union').autocomplete({
+            serviceUrl: '/adms/union',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+                district: function () {
+                    return $("#autocomplete-district").val();
+                },
+                upazila: function () {
+                    return $("#autocomplete-upazilla").val();
+                },
+            }
+        });
+
+        $('#autocomplete-upazilla').autocomplete({
+            serviceUrl: '/adms/upazilla',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+                district: function () {
+                    return $("#autocomplete-district").val();
+                },
+            }
+        });
+
+        $('#autocomplete-district').autocomplete({
+            serviceUrl: '/adms/district',
+            autoSelectFirst: true,
+            params: {
+                division: function () {
+                    return $("#autocomplete-division").val();
+                },
+            }
+        });
+
+        $('#autocomplete-division').autocomplete({
+            serviceUrl: '/adms/division',
+            autoSelectFirst: true
+        });
+    }
+</script>
